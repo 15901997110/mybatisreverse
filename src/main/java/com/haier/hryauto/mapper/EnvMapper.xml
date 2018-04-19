@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.haier.hryauto.mapper.EnvMapper">
+  <resultMap id="BaseResultMap" type="com.haier.hryauto.po.Env">
+    <result column="serviceId" jdbcType="INTEGER" property="serviceid" />
+    <result column="env1host" jdbcType="VARCHAR" property="env1host" />
+    <result column="env1db" jdbcType="VARCHAR" property="env1db" />
+    <result column="env2host" jdbcType="VARCHAR" property="env2host" />
+    <result column="env2db" jdbcType="VARCHAR" property="env2db" />
+    <result column="env3host" jdbcType="VARCHAR" property="env3host" />
+    <result column="env3db" jdbcType="VARCHAR" property="env3db" />
+    <result column="env4host" jdbcType="VARCHAR" property="env4host" />
+    <result column="env4db" jdbcType="VARCHAR" property="env4db" />
+    <result column="env5host" jdbcType="VARCHAR" property="env5host" />
+    <result column="env5db" jdbcType="VARCHAR" property="env5db" />
+    <result column="env6host" jdbcType="VARCHAR" property="env6host" />
+    <result column="env6db" jdbcType="VARCHAR" property="env6db" />
+    <result column="env7host" jdbcType="VARCHAR" property="env7host" />
+    <result column="env7db" jdbcType="VARCHAR" property="env7db" />
+    <result column="env8host" jdbcType="VARCHAR" property="env8host" />
+    <result column="env8db" jdbcType="VARCHAR" property="env8db" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    serviceId, env1host, env1db, env2host, env2db, env3host, env3db, env4host, env4db, 
+    env5host, env5db, env6host, env6db, env7host, env7db, env8host, env8db
+  </sql>
+  <select id="selectByExample" parameterType="com.haier.hryauto.po.EnvExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from env
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.haier.hryauto.po.EnvExample">
+    delete from env
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.haier.hryauto.po.Env">
+    insert into env (serviceId, env1host, env1db, 
+      env2host, env2db, env3host, 
+      env3db, env4host, env4db, 
+      env5host, env5db, env6host, 
+      env6db, env7host, env7db, 
+      env8host, env8db)
+    values (#{serviceid,jdbcType=INTEGER}, #{env1host,jdbcType=VARCHAR}, #{env1db,jdbcType=VARCHAR}, 
+      #{env2host,jdbcType=VARCHAR}, #{env2db,jdbcType=VARCHAR}, #{env3host,jdbcType=VARCHAR}, 
+      #{env3db,jdbcType=VARCHAR}, #{env4host,jdbcType=VARCHAR}, #{env4db,jdbcType=VARCHAR}, 
+      #{env5host,jdbcType=VARCHAR}, #{env5db,jdbcType=VARCHAR}, #{env6host,jdbcType=VARCHAR}, 
+      #{env6db,jdbcType=VARCHAR}, #{env7host,jdbcType=VARCHAR}, #{env7db,jdbcType=VARCHAR}, 
+      #{env8host,jdbcType=VARCHAR}, #{env8db,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.haier.hryauto.po.Env">
+    insert into env
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="serviceid != null">
+        serviceId,
+      </if>
+      <if test="env1host != null">
+        env1host,
+      </if>
+      <if test="env1db != null">
+        env1db,
+      </if>
+      <if test="env2host != null">
+        env2host,
+      </if>
+      <if test="env2db != null">
+        env2db,
+      </if>
+      <if test="env3host != null">
+        env3host,
+      </if>
+      <if test="env3db != null">
+        env3db,
+      </if>
+      <if test="env4host != null">
+        env4host,
+      </if>
+      <if test="env4db != null">
+        env4db,
+      </if>
+      <if test="env5host != null">
+        env5host,
+      </if>
+      <if test="env5db != null">
+        env5db,
+      </if>
+      <if test="env6host != null">
+        env6host,
+      </if>
+      <if test="env6db != null">
+        env6db,
+      </if>
+      <if test="env7host != null">
+        env7host,
+      </if>
+      <if test="env7db != null">
+        env7db,
+      </if>
+      <if test="env8host != null">
+        env8host,
+      </if>
+      <if test="env8db != null">
+        env8db,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="serviceid != null">
+        #{serviceid,jdbcType=INTEGER},
+      </if>
+      <if test="env1host != null">
+        #{env1host,jdbcType=VARCHAR},
+      </if>
+      <if test="env1db != null">
+        #{env1db,jdbcType=VARCHAR},
+      </if>
+      <if test="env2host != null">
+        #{env2host,jdbcType=VARCHAR},
+      </if>
+      <if test="env2db != null">
+        #{env2db,jdbcType=VARCHAR},
+      </if>
+      <if test="env3host != null">
+        #{env3host,jdbcType=VARCHAR},
+      </if>
+      <if test="env3db != null">
+        #{env3db,jdbcType=VARCHAR},
+      </if>
+      <if test="env4host != null">
+        #{env4host,jdbcType=VARCHAR},
+      </if>
+      <if test="env4db != null">
+        #{env4db,jdbcType=VARCHAR},
+      </if>
+      <if test="env5host != null">
+        #{env5host,jdbcType=VARCHAR},
+      </if>
+      <if test="env5db != null">
+        #{env5db,jdbcType=VARCHAR},
+      </if>
+      <if test="env6host != null">
+        #{env6host,jdbcType=VARCHAR},
+      </if>
+      <if test="env6db != null">
+        #{env6db,jdbcType=VARCHAR},
+      </if>
+      <if test="env7host != null">
+        #{env7host,jdbcType=VARCHAR},
+      </if>
+      <if test="env7db != null">
+        #{env7db,jdbcType=VARCHAR},
+      </if>
+      <if test="env8host != null">
+        #{env8host,jdbcType=VARCHAR},
+      </if>
+      <if test="env8db != null">
+        #{env8db,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.haier.hryauto.po.EnvExample" resultType="java.lang.Long">
+    select count(*) from env
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update env
+    <set>
+      <if test="record.serviceid != null">
+        serviceId = #{record.serviceid,jdbcType=INTEGER},
+      </if>
+      <if test="record.env1host != null">
+        env1host = #{record.env1host,jdbcType=VARCHAR},
+      </if>
+      <if test="record.env1db != null">
+        env1db = #{record.env1db,jdbcType=VARCHAR},
+      </if>
+      <if test="record.env2host != null">
+        env2host = #{record.env2host,jdbcType=VARCHAR},
+      </if>
+      <if test="record.env2db != null">
+        env2db = #{record.env2db,jdbcType=VARCHAR},
+      </if>
+      <if test="record.env3host != null">
+        env3host = #{record.env3host,jdbcType=VARCHAR},
+      </if>
+      <if test="record.env3db != null">
+        env3db = #{record.env3db,jdbcType=VARCHAR},
+      </if>
+      <if test="record.env4host != null">
+        env4host = #{record.env4host,jdbcType=VARCHAR},
+      </if>
+      <if test="record.env4db != null">
+        env4db = #{record.env4db,jdbcType=VARCHAR},
+      </if>
+      <if test="record.env5host != null">
+        env5host = #{record.env5host,jdbcType=VARCHAR},
+      </if>
+      <if test="record.env5db != null">
+        env5db = #{record.env5db,jdbcType=VARCHAR},
+      </if>
+      <if test="record.env6host != null">
+        env6host = #{record.env6host,jdbcType=VARCHAR},
+      </if>
+      <if test="record.env6db != null">
+        env6db = #{record.env6db,jdbcType=VARCHAR},
+      </if>
+      <if test="record.env7host != null">
+        env7host = #{record.env7host,jdbcType=VARCHAR},
+      </if>
+      <if test="record.env7db != null">
+        env7db = #{record.env7db,jdbcType=VARCHAR},
+      </if>
+      <if test="record.env8host != null">
+        env8host = #{record.env8host,jdbcType=VARCHAR},
+      </if>
+      <if test="record.env8db != null">
+        env8db = #{record.env8db,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update env
+    set serviceId = #{record.serviceid,jdbcType=INTEGER},
+      env1host = #{record.env1host,jdbcType=VARCHAR},
+      env1db = #{record.env1db,jdbcType=VARCHAR},
+      env2host = #{record.env2host,jdbcType=VARCHAR},
+      env2db = #{record.env2db,jdbcType=VARCHAR},
+      env3host = #{record.env3host,jdbcType=VARCHAR},
+      env3db = #{record.env3db,jdbcType=VARCHAR},
+      env4host = #{record.env4host,jdbcType=VARCHAR},
+      env4db = #{record.env4db,jdbcType=VARCHAR},
+      env5host = #{record.env5host,jdbcType=VARCHAR},
+      env5db = #{record.env5db,jdbcType=VARCHAR},
+      env6host = #{record.env6host,jdbcType=VARCHAR},
+      env6db = #{record.env6db,jdbcType=VARCHAR},
+      env7host = #{record.env7host,jdbcType=VARCHAR},
+      env7db = #{record.env7db,jdbcType=VARCHAR},
+      env8host = #{record.env8host,jdbcType=VARCHAR},
+      env8db = #{record.env8db,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>
