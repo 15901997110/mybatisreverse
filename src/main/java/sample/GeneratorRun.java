@@ -11,7 +11,7 @@ import java.util.List;
 
 public class GeneratorRun {
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         try {
             GeneratorRun generatorRun = new GeneratorRun();
             generatorRun.generator();
@@ -19,8 +19,8 @@ public class GeneratorRun {
             e.printStackTrace();
         }
     }
-    public void generator() throws Exception{
 
+    public void generator() throws Exception {
         List<String> warnings = new ArrayList<String>();
         boolean overwrite = true;
         //指定 逆向工程配置文件
